@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Colis &amp; Commits</title>
+  <meta name="description" content="Apprendre Git en jouant au bureau de poste : un commit est un colis fermé, un push c'est le camion qui part !">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">📮</span>
+      <div>
+        <h1>Colis &amp; Commits</h1>
+        <p>Apprenez Git au guichet de la poste</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="btn" id="btn-stamps">🏅 Carnet de timbres <span class="count" id="stamp-count">0/12</span></button>
+      <button class="btn" id="btn-dico">📖 Dictionnaire</button>
+      <button class="btn" id="btn-sandbox">🧪 Bac à sable</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <aside class="mission" id="mission"></aside>
+
+    <section class="play">
+      <div class="flow" aria-label="Le trajet d'un colis">
+        <span class="fs">🛠️ Établi</span>
+        <span class="fa">git add</span>
+        <span class="fs">📦 Carton</span>
+        <span class="fa">git commit</span>
+        <span class="fs">🏠 Entrepôt</span>
+        <span class="fa">git push</span>
+        <span class="fs">🏤 Central</span>
+      </div>
+
+      <div class="scene">
+        <section class="zone" id="z-work">
+          <header><h3>🛠️ L'établi</h3><small>dossier de travail</small></header>
+          <div class="items" id="work-items"></div>
+          <button class="mini" id="btn-new">+ Nouvel objet</button>
+        </section>
+
+        <section class="zone" id="z-box">
+          <header><h3>📦 Le carton ouvert</h3><small>zone de préparation (index)</small></header>
+          <div class="carton">
+            <div class="flap l"></div><div class="flap r"></div>
+            <div class="items" id="box-items"></div>
+          </div>
+          <button class="mini" id="btn-seal">🔒 Fermer le carton</button>
+        </section>
+
+        <section class="zone" id="z-repo">
+          <header><h3>🏠 Votre entrepôt</h3><small>dépôt local (.git)</small></header>
+          <div class="where" id="repo-branch"></div>
+          <div class="shelf" id="repo-items"></div>
+        </section>
+
+        <section class="zone" id="z-remote">
+          <header><h3>🏤 Bureau central</h3><small id="remote-sub">dépôt distant</small></header>
+          <div class="shelf" id="remote-items"></div>
+        </section>
+      </div>
+
+      <div class="road" aria-hidden="true">
+        <span>🏠</span>
+        <div class="lane"><span class="truck" id="truck">🚚</span></div>
+        <span>🏤</span>
+      </div>
+
+      <div class="terminal">
+        <div class="term-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="term-title">Guichet — terminal</span>
+          <span class="term-tip">↑↓ historique · Tab complète</span>
+        </div>
+        <div class="term-out" id="term-out" aria-live="polite"></div>
+        <form class="term-in" id="term-form" autocomplete="off">
+          <label id="prompt" for="term-in"></label>
+          <input id="term-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="tapez une commande… (help)">
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dlg"><div id="dlg-body"></div></dialog>
+  <div id="confetti" aria-hidden="true"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
