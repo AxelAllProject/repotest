@@ -1,97 +1,58 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Colis &amp; Commits</title>
-  <meta name="description" content="Apprendre Git en jouant au bureau de poste : un commit est un colis fermé, un push c'est le camion qui part !">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Description" content="Apprendre Git en jouant au bureau de poste : un commit est un colis fermé, un push c'est le camion qui part !">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Apple Color Emoji'; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Times; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 11.0px '.Apple Color Emoji UI'; font-kerning: none; background-color: #b3b3b3}
+    span.s3 {font-kerning: none; background-color: #b3b3b3}
+    span.s4 {font: 12.0px Times; font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s5 {font: 12.0px 'Apple Color Emoji'; font-kerning: none}
+    span.s6 {font: 14.0px 'Apple Color Emoji'; font-kerning: none}
+    span.s7 {font: 12.0px 'Times New Roman'; font-kerning: none}
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="logo" aria-hidden="true">📮</span>
-      <div>
-        <h1>Colis &amp; Commits</h1>
-        <p>Apprenez Git au guichet de la poste</p>
-      </div>
-    </div>
-    <nav class="nav">
-      <button class="btn" id="btn-stamps">🏅 Carnet de timbres <span class="count" id="stamp-count">0/12</span></button>
-      <button class="btn" id="btn-dico">📖 Dictionnaire</button>
-      <button class="btn" id="btn-sandbox">🧪 Bac à sable</button>
-    </nav>
-  </header>
-
-  <main class="layout">
-    <aside class="mission" id="mission"></aside>
-
-    <section class="play">
-      <div class="flow" aria-label="Le trajet d'un colis">
-        <span class="fs">🛠️ Établi</span>
-        <span class="fa">git add</span>
-        <span class="fs">📦 Carton</span>
-        <span class="fa">git commit</span>
-        <span class="fs">🏠 Entrepôt</span>
-        <span class="fa">git push</span>
-        <span class="fs">🏤 Central</span>
-      </div>
-
-      <div class="scene">
-        <section class="zone" id="z-work">
-          <header><h3>🛠️ L'établi</h3><small>dossier de travail</small></header>
-          <div class="items" id="work-items"></div>
-          <button class="mini" id="btn-new">+ Nouvel objet</button>
-        </section>
-
-        <section class="zone" id="z-box">
-          <header><h3>📦 Le carton ouvert</h3><small>zone de préparation (index)</small></header>
-          <div class="carton">
-            <div class="flap l"></div><div class="flap r"></div>
-            <div class="items" id="box-items"></div>
-          </div>
-          <button class="mini" id="btn-seal">🔒 Fermer le carton</button>
-        </section>
-
-        <section class="zone" id="z-repo">
-          <header><h3>🏠 Votre entrepôt</h3><small>dépôt local (.git)</small></header>
-          <div class="where" id="repo-branch"></div>
-          <div class="shelf" id="repo-items"></div>
-        </section>
-
-        <section class="zone" id="z-remote">
-          <header><h3>🏤 Bureau central</h3><small id="remote-sub">dépôt distant</small></header>
-          <div class="shelf" id="remote-items"></div>
-        </section>
-      </div>
-
-      <div class="road" aria-hidden="true">
-        <span>🏠</span>
-        <div class="lane"><span class="truck" id="truck">🚚</span></div>
-        <span>🏤</span>
-      </div>
-
-      <div class="terminal">
-        <div class="term-bar">
-          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-          <span class="term-title">Guichet — terminal</span>
-          <span class="term-tip">↑↓ historique · Tab complète</span>
-        </div>
-        <div class="term-out" id="term-out" aria-live="polite"></div>
-        <form class="term-in" id="term-form" autocomplete="off">
-          <label id="prompt" for="term-in"></label>
-          <input id="term-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="tapez une commande… (help)">
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <dialog id="dlg"><div id="dlg-body"></div></dialog>
-  <div id="confetti" aria-hidden="true"></div>
-
-  <script src="game.js"></script>
+<p class="p1"><span class="s1">📮</span></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; -webkit-text-stroke: #000000"><span class="s1"><b>Colis &amp; Commits</b></span></h1>
+<p class="p3"><span class="s1">Apprenez Git au guichet de la poste</span></p>
+<p class="p4"><span class="s2">🏅</span><span class="s3"> Carnet de timbres 0/12</span><span class="s4"> </span><span class="s2">📖</span><span class="s3"> Dictionnaire</span><span class="s4"> </span><span class="s2">🧪</span><span class="s3"> Bac à sable</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p6"><span class="s5">🛠️</span><span class="s1"> Établi git add </span><span class="s5">📦</span><span class="s1"> Carton git commit </span><span class="s5">🏠</span><span class="s1"> Entrepôt git push </span><span class="s5">🏤</span><span class="s1"> Central</span></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times; -webkit-text-stroke: #000000"><span class="s6">🛠️</span><span class="s1"><b> L'établigesgsegsgesgseg</b></span></h3>
+<p class="p8"><span class="s1">dossier de travail</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p4"><span class="s3">+ Nouvel objet</span></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times; -webkit-text-stroke: #000000"><span class="s6">📦</span><span class="s1"><b> Le carton ouvert</b></span></h3>
+<p class="p8"><span class="s1">zone de préparation (index)</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p4"><span class="s2">🔒</span><span class="s3"> Fermer le carton</span></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times; -webkit-text-stroke: #000000"><span class="s6">🏠</span><span class="s1"><b> Votre entrepôt</b></span></h3>
+<p class="p8"><span class="s1">dépôt local (.git)</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"></span><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times; -webkit-text-stroke: #000000"><span class="s6">🏤</span><span class="s1"><b> Bureau central</b></span></h3>
+<p class="p8"><span class="s1">dépôt distant</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">🏠</span></p>
+<p class="p1"><span class="s1">🚚</span></p>
+<p class="p1"><span class="s1">🏤</span></p>
+<p class="p6"><span class="s1">Guichet — terminal </span><span class="s7">↑↓</span><span class="s1"> historique · Tab complète</span></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p5"><span class="s1"></span><br></p>
 </body>
 </html>
